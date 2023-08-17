@@ -1,24 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import RegisterPage from './Component/RegisterPage';
+import QuizPage from './Component/QuizPage';
+
+import {
+  BrowserRouter as Router,
+  Routes, // Import Routes
+  Route,
+} from "react-router-dom";
+import CongratPage from './Component/CongratPage';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div className="App w-[100vw] h-[100vh] flex items-center justify-center  sm:bg-darkBlue">
+      <Routes>
+        
+        <Route path="/" element={<RegisterPage/>} />
+        {/* <Route path="/Complete" element={<CategoryPage/>} /> */}
+        <Route path="/Quiz/:round/" element={<QuizPage/>} />
+        <Route path="/Complete" element={<CongratPage/>} />
+        
+      </Routes>
     </div>
+  </Router>
+
+
+    
   );
 }
 
