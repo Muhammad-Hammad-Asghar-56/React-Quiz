@@ -1,33 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 const RegisterPage = () => {
   const navigator = useNavigate();
+  const [userName,setUserName]=useState('')
+  const handleOnChange=(e)=>{
+    setUserName(e.target.value)
+  }
 
-
-  useEffect(()=>{  // Tempory
-    localStorage.setItem(
-      'UserDetails',
-      JSON.stringify({ username: 'Hammad', round: 1, quiz: 1 })
-    );
-  },[])
-
-  const handleOnStart = () => {
-    console.log('start');
-    let user =JSON.parse(localStorage.getItem('UserDetails'))
-
-    if (user && user.round && user.quiz) {
-      let url =  '/Quiz/' + user.quiz + '/' 
-      navigator(url)
-    }
-    else {
-      localStorage.setItem(
-        'UserDetails',
-        JSON.stringify({ username: 'Hammad', round: 1, quiz: 1 })
-      );
-      navigator('/Quiz/1/')
-    }
+   const handleOnStart = () => {
+    localStorage.setItem('UserDetails',JSON.stringify({ username:userName}))  
+    navigator(`/${userName}/Categories`)
   }
   return (
     <div className='w-[90%] h-2/3  sm:w-1/2 rounded-xl sm:h-1/2 flex justify-center items-center bg-creamWhite'>
@@ -40,9 +24,11 @@ const RegisterPage = () => {
             <div className="relative w-full">
               <input
                 type="text"
+                required
                 id="floating_outlined"
                 className="block px-2.5 pb-2.5 w-full pt-4 text-sm text-gray-900 rounded-lg border-1 border-darkBlue appearance-none focus:outline-none focus:ring-2 focus:ring-darkBlue peer"
                 placeholder=" "
+                onChange={handleOnChange}
               />
               <label
                 htmlFor="floating_outlined"

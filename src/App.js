@@ -9,18 +9,18 @@ import {
   Route,
 } from "react-router-dom";
 import CongratPage from './Component/CongratPage';
+import CategoriesPage from './Component/CategoriesPage';
 
 
 function App() {
   return (
     <Router>
-    <div className="App w-[100vw] h-[100vh] flex items-center justify-center  sm:bg-darkBlue">
+    <div className="App w-[100vw] h-[100vh] flex items-center justify-center  bg-darkBlue">
       <Routes>
-        
         <Route path="/" element={<RegisterPage/>} />
-        {/* <Route path="/Complete" element={<CategoryPage/>} /> */}
-        <Route path="/Quiz/:round/" element={<QuizPage/>} />
-        <Route path="/Complete" element={<CongratPage/>} />
+        <Route path="/:username/Categories" element={<CategoriesPage/>} />
+        <Route path="/:username/:Category/Quiz/:round/" element={<QuizPage/>} />
+        <Route path="/:username/Complete/:Category/:round" element={<CongratPage/>}/>
         
       </Routes>
     </div>
