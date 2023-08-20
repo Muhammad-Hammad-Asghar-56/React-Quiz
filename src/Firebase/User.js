@@ -1,28 +1,36 @@
 import { db } from "./FirebaseAppConfig";
-import { collection, addDoc,updateDoc, getDocs } from "firebase/firestore";
+import {
+  setDoc,
+  getDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+} from "firebase/firestore";
 
-export const addUser = async (name, email) => {
+export const updateUserPoints = async (userName) => {
+  
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      name: name,
-      email: email,
-    });
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-};
-export const getUser = async () => {
-  try {
-    const usersSnapshot = await getDocs(collection(db, "users"));
-    const usersData = [];
-    usersSnapshot.forEach((doc) => {
-      if (doc) {
-        usersData.push(doc.data());
-      }
-    });
-    return usersData;
-  } catch (e) {
-    console.error("Error adding document: ", e);
+    const userRef = doc(db, "User", userName);
+    const docSnapshot = await getDoc(userRef);
+
+    if (docSnapshot.exists()) {
+      await updateDoc(userRef, {
+        points: docSnapshot.data().points + 100
+      });
+
+      console.log("User Points has been Updated");
+
+      return docSnapshot.data();
+    } else {
+      const initialData = {
+        points: 100
+      };
+
+      await setDoc(userRef, initialData);
+      return initialData;
+    }
+  } catch (error) {
+    console.error("Error fetching quiz data:", error);
+    return null;
   }
 };

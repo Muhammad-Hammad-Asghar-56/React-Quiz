@@ -51,7 +51,7 @@ const QuizPage = () => {
     if (!selectedOption) {
       setSelectedOption(item);
       console.log(quizDetails['Current Question'])
-      const res = await checkQuizAnswer(Category, round, quizDetails['Current Question'], item); // Pass 'item' instead of 'selectedOption'
+      const res = await checkQuizAnswer(username,Category, round, quizDetails['Current Question'], item); // Pass 'item' instead of 'selectedOption'
       const { correct } = res;
       setCorrectOption(correct);
       if (quizDetails['Current Question'] === quizDetails['Total Question'])

@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import RegisterPage from './Component/RegisterPage';
 import QuizPage from './Component/QuizPage';
-
+import {MarkQuizComplete} from './Firebase/Analaytics'
 import {
   BrowserRouter as Router,
   Routes, // Import Routes

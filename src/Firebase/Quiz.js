@@ -1,7 +1,7 @@
-import { categoryRef, db } from "./FirebaseAppConfig";
+import {  db } from "./FirebaseAppConfig";
 import { collection, getDocs, setDoc, getDoc, doc, query, where } from "firebase/firestore";
-
-
+import { MarkQuizComplete } from "./Analaytics";
+import { updateUserPoints } from "./User";
 //                              Rounds
 export const storeQuizDoc = async (category, round) => {
   const QuizesRef = doc(db, "Quizes", category);
@@ -40,7 +40,7 @@ export const getQuizData = async (category, round, quiz) => {
   }
 };
 
-export const checkQuizAnswer = async (category, round, quiz, Answer) => {
+export const checkQuizAnswer = async (userName,category, round, quiz, Answer) => {
   const quizRef = doc(db, "Quizes", category);
 
   try {
@@ -53,7 +53,13 @@ export const checkQuizAnswer = async (category, round, quiz, Answer) => {
         indexNum: quizData["Option"].indexOf(quizData["Answer"]),
         correct: quizData["Answer"],
       };
-      console.log(response);
+      // if quiz are apply to check then need to update the analytics
+      MarkQuizComplete(userName).then((data) => {
+        console.log(`Analytics has been updated and ${userName} had been insert into the analytics`)
+      });
+      if(response.result){
+        updateUserPoints(userName)
+      }
       return response;
     } else {
       console.log("No such document!");
