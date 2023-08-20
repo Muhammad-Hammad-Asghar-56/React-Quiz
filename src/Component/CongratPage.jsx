@@ -59,7 +59,13 @@ const CongratPage = () => {
     return (
         <div className='h-full w-full flex flex-col items-center justify-center gap-4'>
             {loading ? <Loader /> : <p className='text-2xl text-creamWhite'>Congratulations {username}! You've completed the Round {round}.</p>}
-            <div className='w-1/2 h-1/2 rounded-md bg-creamWhite'> Ad</div>
+            <div className='w-1/2 h-1/2 rounded-md bg-creamWhite'> Ad
+            
+            {
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7359253418301490"
+              crossorigin="anonymous"></script>
+            }
+            </div>
             <div className='flex flex-row gap-4'>
 
             {nextRoundData != null && <button onClick={handleOnClick} className="rounded bg-lightPurple hover:bg-[rgb(110,120,225)] px-4 py-2 mt-2 text-creamWhite">
