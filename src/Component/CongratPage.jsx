@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import GoogleadComponent from './GoogleadComponent';
 import Loader from './Loader'; // Adjust the import path
-import { useParams,useNavigate } from 'react-router-dom';
 import { getRoundData } from '../Firebase/Quiz';
+
 const CongratPage = () => {
     const navigator = useNavigate();
 
@@ -59,12 +61,8 @@ const CongratPage = () => {
     return (
         <div className='h-full w-full flex flex-col items-center justify-center gap-4'>
             {loading ? <Loader /> : <p className='text-2xl text-creamWhite'>Congratulations {username}! You've completed the Round {round}.</p>}
-            <div className='w-1/2 h-1/2 rounded-md bg-creamWhite'> Ad
-            
-            {
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7359253418301490"
-              crossorigin="anonymous"></script>
-            }
+            <div className='w-1/2 h-1/2 rounded-md bg-creamWhite'> 
+              <GoogleadComponent/>           
             </div>
             <div className='flex flex-row gap-4'>
 
