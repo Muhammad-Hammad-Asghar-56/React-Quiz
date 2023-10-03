@@ -18,7 +18,7 @@ const RegisterPage = () => {
       <div className='w-[90%] h-[90%] sm:w-1/2 sm:h-2/3 text-darkBlue rounded-md'>
         <div className='flex flex-col items-center justify-center h-full'>
           <div className='text-center font-bold text-2xl my-8'>
-            Quiz Game
+              QuizMaster Pro
           </div>
           <div className='w-full flex flex-col items-center gap-2'>
             <div className="relative w-full">
