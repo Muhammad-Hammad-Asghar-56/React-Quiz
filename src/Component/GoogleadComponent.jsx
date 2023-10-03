@@ -20,8 +20,8 @@ data-full-width-responsive="true"></ins>
 
 
     return (
-        <div>
-            <h1>Your Component</h1>
+        <div className="d-flex justify-center">
+            {/* <h1>Your Component</h1> */}
             <AdSense.Google
                 client="ca-pub-7359253418301490"
                 slot="5676345076"
